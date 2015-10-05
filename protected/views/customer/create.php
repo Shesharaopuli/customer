@@ -7,12 +7,9 @@ $this->breadcrumbs=array(
 	'Create',
 );
 
-$this->menu=array(
-	array('label'=>'List CustomerModel', 'url'=>array('index')),
-	array('label'=>'Manage CustomerModel', 'url'=>array('admin')),
-);
+
 ?>
 
-<h1>Create CustomerModel</h1>
+<h1>Customer registration</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

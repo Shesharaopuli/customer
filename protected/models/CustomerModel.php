@@ -57,7 +57,7 @@ class CustomerModel extends CActiveRecord
 	{
 		return array(
 			'customer_id' => 'Customer',
-			'customer_firstname' => 'Customer Firstname',
+			'customer_firstname' => 'Customer Name',
 			'customer_email' => 'Customer Email',
 			'customer_password' => 'Customer Password',
 		);
