@@ -20,11 +20,7 @@ class UserIdentity extends CUserIdentity
 		
 		$models=CustomerModel::model()->findAll();
 		$users=CHtml::listData($models, 'customer_email', 'customer_password');
-		/*$users=array(
-			// username => password
-			'demo'=>'demo',
-			'admin'=>'admin',
-		);*/
+		
 		if(!isset($users[$this->username]))
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
 		elseif($users[$this->username]!==$this->password)
