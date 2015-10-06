@@ -34,6 +34,7 @@
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Customer', 'url'=>array('/customer/index')),
+				array('label'=>'View Products', 'url'=>array('/product/index')),
 				array('label'=>'SignUp', 'url'=>array('/customer/create'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),

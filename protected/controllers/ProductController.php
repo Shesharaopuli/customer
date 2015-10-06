@@ -1,6 +1,6 @@
 <?php
 
-class CustomerController extends Controller
+class ProductController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -32,11 +32,11 @@ class CustomerController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('index'),
+				'actions'=>array('index','view'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','index','view','update','create','view',),
+				'actions'=>array('admin','delete','create','update'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -62,16 +62,16 @@ class CustomerController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new CustomerModel;
+		$model=new ProductModel;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['CustomerModel']))
+		if(isset($_POST['ProductModel']))
 		{
-			$model->attributes=$_POST['CustomerModel'];
+			$model->attributes=$_POST['ProductModel'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->customer_id));
+				$this->redirect(array('view','id'=>$model->product_id));
 		}
 
 		$this->render('create',array(
@@ -91,11 +91,11 @@ class CustomerController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['CustomerModel']))
+		if(isset($_POST['ProductModel']))
 		{
-			$model->attributes=$_POST['CustomerModel'];
+			$model->attributes=$_POST['ProductModel'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->customer_id));
+				$this->redirect(array('view','id'=>$model->product_id));
 		}
 
 		$this->render('update',array(
@@ -122,7 +122,7 @@ class CustomerController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('CustomerModel');
+		$dataProvider=new CActiveDataProvider('ProductModel');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class CustomerController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new CustomerModel('search');
+		$model=new ProductModel('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['CustomerModel']))
-			$model->attributes=$_GET['CustomerModel'];
+		if(isset($_GET['ProductModel']))
+			$model->attributes=$_GET['ProductModel'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +147,12 @@ class CustomerController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return CustomerModel the loaded model
+	 * @return ProductModel the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=CustomerModel::model()->findByPk($id);
+		$model=ProductModel::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,11 +160,11 @@ class CustomerController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param CustomerModel $model the model to be validated
+	 * @param ProductModel $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='customer-model-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='product-model-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
