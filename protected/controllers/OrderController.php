@@ -181,10 +181,11 @@ class OrderController extends Controller
 			
 			$to = Yii::app()->session['customeremail'];
 			$subject = "You Order is Success";
-			$body = "Thanks for Ordering with Our orgnanisation.";
-			$headers = "From:pshesharaoram@gmail.com" . "\r\n";
+			$params = array('amount'=>$model->order_amount);
+			$from = "pshesharaoram@gmail.com" ;
 			
-			mail($to,$subject,$body,$headers);
+			Utility::SendMail('test', $to, $subject, $params,$from);
+			
 			if($model->save()){
 				
 				$this->redirect(array('view','id'=>$model->order_id));

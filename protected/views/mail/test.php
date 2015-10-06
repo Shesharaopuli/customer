@@ -2,6 +2,6 @@
 	<head>
 	</head>
 	<body>
-		This is a test mail.
+		Hello.. You Order amount is:<?php echo $amount; ?>
 	</body>
 </html>

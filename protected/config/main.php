@@ -74,24 +74,25 @@ return array(
 				*/
 			),
 		),
+		
+		'mail' => array(
+				'class' => 'ext.yii-mail.YiiMail',
+				'transportType'=>'smtp',
+				'transportOptions'=>array(
+						'host'=>'smtp.gmail.com',
+						'encryption'=>'ssl',
+						'username'=>'dev.loyalla@gmail.com',
+						'password'=>'Welcome1@3',
+						'port'=>'465',
+				),
+				'viewPath' => 'application.views.mail',
+				'logging' => true,
+				'dryRun' => false,
+					
+		),	
 
 	),
 		
-	'mail' => array(
-			'class' => 'ext.yii-mail.YiiMail',
-			'transportType'=>'smtp',
-			'transportOptions'=>array(
-					'host'=>'smtp.gmail.com',
-					'encryption'=>'ssl',
-					'username'=>'shesharao.ram@gmail.com',
-					'password'=>'pulishesharao',
-					'port'=>'465',
-			),
-			'viewPath' => 'application.views.mail',
-			'logging' => true,
-			'dryRun' => false,
-			
-	),
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
