@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 	'Product Models'=>array('index'),
 	$model->product_id,
 );
-
+if (Utility::isAdmin()){
 $this->menu=array(
 	array('label'=>'List ProductModel', 'url'=>array('index')),
 	array('label'=>'Create ProductModel', 'url'=>array('create')),
@@ -14,6 +14,7 @@ $this->menu=array(
 	array('label'=>'Delete ProductModel', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->product_id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage ProductModel', 'url'=>array('admin')),
 );
+}
 ?>
 
 <h1>View Products #<?php echo $model->product_id; ?></h1>

@@ -32,11 +32,11 @@
 				array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Customer', 'url'=>array('/customer/index')),
+				array('label'=>'Customer', 'url'=>array('/customer/index'), 'visible'=>Utility::isAdmin()),
 				array('label'=>'View Products', 'url'=>array('/product/index')),
-				array('label'=>'My Orders', 'url'=>array('/order/index')),
+				array('label'=>'My Orders', 'url'=>array('/order/index'),'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'SignUp', 'url'=>array('/customer/create'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
