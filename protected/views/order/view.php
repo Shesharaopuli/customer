@@ -16,7 +16,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View OrderModel #<?php echo $model->order_id; ?></h1>
+<h1>You Order is Successfull!!<br>Your Order ID #<?php echo $model->order_id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

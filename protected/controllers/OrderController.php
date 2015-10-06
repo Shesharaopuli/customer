@@ -28,15 +28,15 @@ class OrderController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','OrderIt'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','OrderIt'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','OrderIt'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -158,6 +158,34 @@ class OrderController extends Controller
 		return $model;
 	}
 
+
+	/**
+	 * Function for orderit
+	 */
+	public function actionOrderIt()
+	{
+		$model=new OrderModel;
+	
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+	
+		if(isset($_POST))
+		{
+			//$model->attributes=$_POST['BookingModel'];
+			$model->order_product_id=$_POST['product_id'];
+			
+			$model->order_customer_id=Yii::app()->session['customerid'];
+			$model->order_amount=$_POST['product_price'];
+			//print_r($model->attributes);exit;
+			if($model->save()){
+				$this->redirect(array('view','id'=>$model->order_id));
+			}
+		}
+	
+	
+	}
+	
+	
 	/**
 	 * Performs the AJAX validation.
 	 * @param OrderModel $model the model to be validated
