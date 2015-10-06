@@ -28,15 +28,15 @@ class OrderController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','OrderIt'),
+				'actions'=>array('OrderIt'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','OrderIt'),
+				'actions'=>array('create','update','OrderIt','index','view'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','OrderIt'),
+				'actions'=>array('admin','delete','OrderIt','index','view'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -122,7 +122,9 @@ class OrderController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('OrderModel');
+		$customerid=$_SESSION['customerid'];
+		
+		$dataProvider=OrderModel::model()->findAllByAttributes(array('order_customer_id'=> $customerid)) ;
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -175,9 +177,16 @@ class OrderController extends Controller
 			$model->order_product_id=$_POST['product_id'];
 			
 			$model->order_customer_id=Yii::app()->session['customerid'];
-			$model->order_amount=$_POST['product_price'];
-			//print_r($model->attributes);exit;
+			$model->order_amount=$_POST['product_price']+$_POST['product_shipping_price'];
+			
+			$to = Yii::app()->session['customeremail'];
+			$subject = "You Order is Success";
+			$body = "Thanks for Ordering with Our orgnanisation.";
+			$headers = "From:pshesharaoram@gmail.com" . "\r\n";
+			
+			mail($to,$subject,$body,$headers);
 			if($model->save()){
+				
 				$this->redirect(array('view','id'=>$model->order_id));
 			}
 		}

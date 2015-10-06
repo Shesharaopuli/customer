@@ -71,6 +71,7 @@ class LoginForm extends CFormModel
 			Yii::app()->user->login($this->_identity,$duration);
 			$customermodel=CustomerModel::model()->findByAttributes(array('customer_email'=>$this->username));
 			Yii::app()->session['customerid']=$customermodel->customer_id;
+			Yii::app()->session['customeremail']=$customermodel->customer_email;
 				
 			return true;
 		}

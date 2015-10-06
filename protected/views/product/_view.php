@@ -20,10 +20,11 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('product_shipping_price')); ?>:</b>
 	<?php echo CHtml::encode($data->product_shipping_price); ?>
 	<br />
-
+	
     <form method="post" action="<?php echo Yii::app()->createUrl("order/OrderIt"); ?>">
     <input type='hidden' name='product_id' value="<?php echo $data->product_id ?>">
     <input type='hidden' name='product_price' value=<?php echo $data->product_price ;?>>
+    <input type='hidden' name='product_shipping_price' value=<?php echo $data->product_shipping_price ;?>>
     <input type='submit' value='Order Now'>
     </form>
 
