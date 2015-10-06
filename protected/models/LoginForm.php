@@ -72,7 +72,7 @@ class LoginForm extends CFormModel
 			$customermodel=CustomerModel::model()->findByAttributes(array('customer_email'=>$this->username));
 			Yii::app()->session['customerid']=$customermodel->customer_id;
 			Yii::app()->session['customeremail']=$customermodel->customer_email;
-				
+			Yii::app()->session['customername']=$customermodel->customer_firstname;
 			return true;
 		}
 		else

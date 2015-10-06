@@ -178,10 +178,10 @@ class OrderController extends Controller
 			
 			$model->order_customer_id=Yii::app()->session['customerid'];
 			$model->order_amount=$_POST['product_price']+$_POST['product_shipping_price'];
-			
+			$name=Yii::app()->session['customername'];
 			$to = Yii::app()->session['customeremail'];
 			$subject = "You Order is Success";
-			$params = array('amount'=>$model->order_amount);
+			$params = array('model'=>$model,'name'=>$name,'actualprice'=>$_POST['product_price'],'shippingprice'=>$_POST['product_shipping_price']);
 			$from = "pshesharaoram@gmail.com" ;
 			
 			Utility::SendMail('test', $to, $subject, $params,$from);
